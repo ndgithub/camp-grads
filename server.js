@@ -1,11 +1,15 @@
 const express = require('express');
+const morgan = require('morgan');
 const connectDB = require('./config/db')
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Connect to db
+// Connect to DB
 connectDB();
 
+// Init middleware
+app.use(express.json({ extended: false }));
+app.use(morgan('dev'));
 app.get('/', (req, res) => res.send('App is running'));
 
 // Define Routes
