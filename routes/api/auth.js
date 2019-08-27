@@ -33,6 +33,18 @@ router.post('/',
     check('password', 'Password is required').exists(),
   ],
   async (req, res) => {
+    try {
+      if (true) {
+        throw Error('asdf');
+      }
+    } catch (err) {
+
+    }
+
+
+
+
+
     // Express validator
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
