@@ -14,7 +14,6 @@ router.post('/', [
   check('name', 'Name is required').not().isEmpty(),
   check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 })
 ], async (req, res) => {
-  console.log('caca')
   // Express validator
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -52,7 +51,8 @@ router.post('/', [
 
     const payload = {
       user: {
-        id: user.id
+        id: user.id,
+        name: user.name
       }
     }
 
@@ -62,9 +62,9 @@ router.post('/', [
       { expiresIn: 360000 },
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
-      });
-    res.send('User Route').json({ user });
+        return res.json({ token });
+      }
+    );
   } catch (err) {
     console.error('sup' + err.message)
     res.status(500).send('Server Error:' + err.message);
