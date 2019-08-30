@@ -2,4 +2,5 @@
 
 module.exports = {
   User: require('./User.js'),
+  Profile: require('./Profile.js'),
 }
