@@ -3,9 +3,11 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
+
 import PropTypes from 'prop-types'
 
-const Register = (props) => {
+const Register = ({ setAlert, register }) => {
   // Hooks so we don't need to create a class to hold state
   const [formData, setFormData] = useState({
     name: '',
@@ -20,30 +22,12 @@ const Register = (props) => {
   const onSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
-      props.setAlert('Passwords Do Not Match', 'danger');
+      setAlert('Passwords Do Not Match', 'danger');
     } else {
-      const newUser = {
-        name,
-        email,
-        password
-      }
-
-      try {
-        const config = {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-        const body = JSON.stringify(newUser);
-        const res = await axios.post('api/users', body, config);
-        console.log(res.data);
-      } catch (error) {
-        console.log(error)
-      }
-      console.log(formData)
+      register({ name, email, password });
     }
+    console.log(formData)
   }
-
   return <>
     <h1 class="large text-primary">Sign Up</h1>
     <p class="lead"><i class="fas fa-user"></i> Create Your Account</p>
@@ -55,7 +39,7 @@ const Register = (props) => {
           name="name"
           value={name}
           onChange={(e) => onChange(e)}
-          required />
+        />
       </div>
       <div class="form-group">
         <input type="email"
@@ -75,7 +59,7 @@ const Register = (props) => {
           name="password"
           value={password}
           onChange={(e) => onChange(e)}
-          minLength="6"
+        // minLength="6"
         />
       </div>
       <div class="form-group">
@@ -98,5 +82,6 @@ const Register = (props) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 }
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
