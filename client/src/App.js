@@ -11,13 +11,14 @@ import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 
 
-import './App.css';
 
+import './App.css';
 if (localStorage.token) {
   setAuthToken(localStorage.token)
 }
 
 const App = () => {
+  // Hooks feature so i don't have to use componenetDidMount
   useEffect(() => {
     store.dispatch(loadUser());
   }, [])
