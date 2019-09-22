@@ -15,15 +15,17 @@ const db = require('../../models');
 // @access Public
 router.get('/me', auth, async (req, res) => {
   try {
+    console.log(req.user.id)
     const profile = await db.Profile.findOne({ user: req.user.id }).populate(
       'user',
       ['name', 'avatar']
     );
+    console.log(`The profile is: ${profile}`);
+
 
     if (!profile) {
       return res.status(400).json({ msg: 'There is no profile for this user' });
     }
-
     res.json(profile);
   } catch (err) {
     console.error(err.message);
