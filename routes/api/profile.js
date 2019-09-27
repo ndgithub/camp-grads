@@ -127,7 +127,12 @@ router.get('/', async (req, res) => {
 // @access Private
 router.delete('/', auth, async (req, res) => {
   try {
+
+    // Remove User Posts
+    await db.Post.deleteMany({ user: req.user.id });
+    // Remove Profile
     await db.Profile.findOneAndDelete({ user: req.user.id });
+    // Remove User/Account
     await db.User.findOneAndDelete({ _id: req.user.id })
     res.status(200).json({ msg: 'User Deleted' });
   } catch (error) {
@@ -197,8 +202,6 @@ router.put(
 // @route DELETE api/profile/experience/:exp_id
 // @desc  Delete expreience from profile
 // @access Private
-
-
 router.delete('/experience/:exp_id', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id });
