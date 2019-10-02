@@ -10,6 +10,7 @@ const Login = ({ login, isAuthenticated }) => {
     password: ''
   });
 
+
   const { email, password } = formData;
 
   const onChange = e =>
