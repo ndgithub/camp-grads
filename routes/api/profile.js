@@ -127,7 +127,6 @@ router.get('/', async (req, res) => {
 // @access Private
 router.delete('/', auth, async (req, res) => {
   try {
-
     // Remove User Posts
     await db.Post.deleteMany({ user: req.user.id });
     // Remove Profile

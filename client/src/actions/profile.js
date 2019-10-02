@@ -3,6 +3,8 @@ import { setAlert } from './alert';
 
 import {
   GET_PROFILE,
+  GET_PROFILES,
+  GET_REPOS,
   PROFILE_ERROR,
   UPDATE_PROFILE,
   CLEAR_PROFILE,
@@ -25,8 +27,66 @@ export const getCurrentProfile = () => async dispatch => {
       payload: { msg: error.response.statusText, status: error.response.status }
     })
   }
+};
 
-}
+// Get all profiles 
+export const getProfiles = () => async dispatch => {
+  dispatch({ type: CLEAR_PROFILE });
+  try {
+    const res = await axios.get('http://localhost:5000/api/profiles');
+    dispatch({
+      type: GET_PROFILES,
+      payload: res.data
+    });
+    console.log(res)
+  } catch (error) {
+    console.log(error)
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status }
+    })
+  }
+};
+
+
+
+// Get profile by ID
+export const getProfileById = (userId) => async dispatch => {
+  try {
+    const res = await axios.get(`http://localhost:5000/api/profile/${userId}`);
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data
+    });
+    console.log(res)
+  } catch (error) {
+    console.log(error)
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status }
+    })
+  }
+};
+
+// Get Github repos
+export const getGithubRepos = username => async dispatch => {
+  try {
+    const res = await axios.get(`http://localhost:5000/api/profile/github/${username}`);
+    dispatch({
+      type: GET_REPOS,
+      payload: res.data
+    });
+    console.log(res)
+  } catch (error) {
+    console.log(error)
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status }
+    })
+  }
+};
+
+
 
 
 //  Create or update profile
@@ -183,7 +243,7 @@ export const deleteAccount = () => async dispatch => {
       })
     }
   }
-
-
-
 }
+
+
+
