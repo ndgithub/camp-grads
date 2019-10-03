@@ -10,6 +10,8 @@ import EditProfile from './components/profile-forms/EditProfile';
 import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
 import Profiles from './components/profiles/Profiles';
+import Posts from './components/posts/Posts';
+
 import Register from './components/auth/Register';
 import PrivateRoute from './components/routing/PrivateRoute';
 // Redux
@@ -18,18 +20,16 @@ import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 
-
-
 import './App.css';
 if (localStorage.token) {
-  setAuthToken(localStorage.token)
+  setAuthToken(localStorage.token);
 }
 
 const App = () => {
   // Hooks feature so i don't have to use componenetDidMount
   useEffect(() => {
     store.dispatch(loadUser());
-  }, [])
+  }, []);
   return (
     <Provider store={store}>
       <Router>
@@ -43,15 +43,32 @@ const App = () => {
               <Route exact path="/login" component={Login} />
               <Route exact path="/profiles" component={Profiles} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute exact path="/create-profile" component={CreateProfile} />
-              <PrivateRoute exact path="/edit-profile" component={EditProfile} />
-              <PrivateRoute exact path="/add-experience" component={AddExperience} />
-              <PrivateRoute exact path="/add-education" component={AddEducation} />
-
+              <PrivateRoute
+                exact
+                path="/create-profile"
+                component={CreateProfile}
+              />
+              <PrivateRoute
+                exact
+                path="/edit-profile"
+                component={EditProfile}
+              />
+              <PrivateRoute
+                exact
+                path="/add-experience"
+                component={AddExperience}
+              />
+              <PrivateRoute
+                exact
+                path="/add-education"
+                component={AddEducation}
+              />
+              <PrivateRoute exact path="/posts" component={Posts} />
             </Switch>
           </section>
         </Fragment>
       </Router>
-    </Provider>);
-}
+    </Provider>
+  );
+};
 export default App;

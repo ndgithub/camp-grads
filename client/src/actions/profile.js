@@ -29,11 +29,11 @@ export const getCurrentProfile = () => async dispatch => {
   }
 };
 
-// Get all profiles 
+// Get all profiles
 export const getProfiles = () => async dispatch => {
   dispatch({ type: CLEAR_PROFILE });
   try {
-    const res = await axios.get('http://localhost:5000/api/profiles');
+    const res = await axios.get('http://localhost:5000/api/profile');
     dispatch({
       type: GET_PROFILES,
       payload: res.data
@@ -123,8 +123,8 @@ export const createProfile = (formData, history, edit = false) => async dispatch
 
 }
 
-// Add Experience 
-// Takes history argument to redirect back to dashboard after action 
+// Add Experience
+// Takes history argument to redirect back to dashboard after action
 export const addExperience = (formData, history) => async dispatch => {
   try {
     const config = {
@@ -157,7 +157,7 @@ export const addExperience = (formData, history) => async dispatch => {
 
 }
 
-// Add Education 
+// Add Education
 export const addEducation = (formData, history) => async dispatch => {
   try {
     const config = {
@@ -186,7 +186,7 @@ export const addEducation = (formData, history) => async dispatch => {
   }
 }
 
-// Delete Experience 
+// Delete Experience
 export const deleteExperience = id => async dispatch => {
   try {
     const res = await axios.delete(`api/profile/experience/${id}`);
@@ -205,7 +205,7 @@ export const deleteExperience = id => async dispatch => {
   }
 }
 
-// Delete Education 
+// Delete Education
 export const deleteEducation = id => async dispatch => {
   try {
     const res = await axios.delete(`api/profile/education/${id}`);
@@ -229,7 +229,7 @@ export const deleteAccount = () => async dispatch => {
 
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     try {
-      const res = await axios.delete(`api/profile/`);
+      await axios.delete(`api/profile/`);
 
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: ACCOUNT_DELETED });
@@ -244,6 +244,3 @@ export const deleteAccount = () => async dispatch => {
     }
   }
 }
-
-
-

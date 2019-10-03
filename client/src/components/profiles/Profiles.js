@@ -7,16 +7,13 @@ import { getProfiles } from '../../actions/profile';
 
 const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {
-    console.log('sup')
-    //getProfiles();
-  }
-    //, [getProfiles]
-  );
+    getProfiles();
+  }, [getProfiles]);
 
   return (
     <Fragment>
       <div>asdfsfadf</div>
-      {/* {loading ? (
+      {loading ? (
         <Spinner />
       ) : (
           <Fragment>
@@ -35,7 +32,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
                 )}
             </div>
           </Fragment>
-        )} */}
+        )}
     </Fragment>
   );
 };

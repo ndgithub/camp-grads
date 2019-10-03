@@ -1,4 +1,3 @@
-import { type } from "os"
 import {
   GET_PROFILE,
   GET_PROFILES,
