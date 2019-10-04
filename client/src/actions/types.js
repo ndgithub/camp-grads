@@ -23,6 +23,12 @@ export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const ACCOUNT_DELETED = 'ACCOUNT_DELETED';
 
 export const GET_POSTS = 'GET_POSTS';
+export const GET_POST = 'GET_POST';
 export const POST_ERROR = 'POST_ERROR';
+export const ADD_POST = 'ADD_POST';
+export const DELETE_POST = 'DELETE_POST';
 
-export const UDPATE_LIKES = 'UDPATE_LIKES';
+export const ADD_COMMENT = 'ADD_COMMMENT';
+export const REMOVE_COMMENT = 'REMOVE_COMMENT';
+
+export const UPDATE_LIKES = 'UPDATE_LIKES';
