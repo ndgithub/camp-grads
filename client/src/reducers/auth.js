@@ -8,15 +8,16 @@ import {
   LOGOUT,
   ACCOUNT_DELETED
 } from '../actions/types';
+import setAuthToken from '../utils/setAuthToken';
 
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
   loading: true,
-  user: null,
-}
+  user: null
+};
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -26,16 +27,17 @@ export default function (state = initialState, action) {
         isAuthenticated: true,
         loading: false,
         user: payload
-      }
+      };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
       localStorage.setItem('token', payload.token);
+      setAuthToken(payload.token);
       return {
         ...state,
         ...payload,
         isAuthenticated: true,
         loading: false
-      }
+      };
     case REGISTER_FAIL:
     case AUTH_ERROR:
     case LOGIN_FAIL:
@@ -47,7 +49,7 @@ export default function (state = initialState, action) {
         token: null,
         isAuthenticated: false,
         loading: false
-      }
+      };
     default:
       return state;
   }

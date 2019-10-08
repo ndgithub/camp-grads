@@ -3,8 +3,10 @@ const config = require('config');
 
 module.exports = (req, res, next) => {
   // Get Token from header
+  console.log('auth middleware called');
   const token = req.header('x-auth-token');
   if (!token) {
+    console.log('no token');
     return res.status(401).json({ msg: 'no token, authorization denied' });
   }
 
@@ -14,7 +16,6 @@ module.exports = (req, res, next) => {
     req.user = decoded.user;
     next();
   } catch (err) {
-    res.status(401).json({ msg: "token is not valid" })
+    res.status(401).json({ msg: 'token is not valid' });
   }
-
-}
+};
