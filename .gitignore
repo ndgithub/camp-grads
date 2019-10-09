@@ -1,3 +1,2 @@
 node_modules/
-config
-client/node_modules
+config/default.json
