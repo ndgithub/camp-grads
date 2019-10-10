@@ -1,6 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://ndesai:ndesai@cluster0-wc15n.mongodb.net/campgrads?retryWrites=true&w=majority",
-  "jwtSecret": "myTokenSecret",
-  "githubClientId": "3eff24eb181008230c37",
-  "githubClientSecret": "3c139ce9b5699ba3a3571a0425a28452e33687bb"
-}

@@ -1,9 +1,12 @@
+// If developing, use .env file, otherwise setup of process.env is required.
+if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-const connectDB = require('./config/db');
-const app = express();
+const connectDB = require('./db');
 const path = require('path');
+
+const app = express();
 
 // Connect to DB
 connectDB();

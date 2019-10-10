@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { check, validationResult } = require('express-validator')
+const { check, validationResult } = require('express-validator');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -10,36 +10,42 @@ const db = require('../../models');
 // @route POST api/users
 // @desc  Register User
 // @access Public
-router.post('/',
+router.post(
+  '/',
   [
     check('name', 'Name is required')
       .not()
       .isEmpty(),
     check('email', 'Please include a valid email').isEmail(),
-    check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 })
-  ], async (req, res) => {
+    check(
+      'password',
+      'Please enter a password with 6 or more characters'
+    ).isLength({ min: 6 })
+  ],
+  async (req, res) => {
     // Express validator
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() })
+      return res.status(400).json({ errors: errors.array() });
     }
 
     const { name, email, password } = req.body;
 
     try {
-
       // See if user exists
       let user = await db.User.findOne({ email });
       if (user) {
-        console.log('Error, User Already Exists')
-        return res.status(400).json({ errors: [{ msg: 'User Already Exists' }] });
+        console.log('Error, User Already Exists');
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'User Already Exists' }] });
       }
 
       const avatar = gravatar.url(email, {
         s: '200',
         r: 'pg',
         d: 'mm'
-      })
+      });
 
       user = new db.User({
         name,
@@ -59,11 +65,11 @@ router.post('/',
           id: user.id,
           name: user.name
         }
-      }
+      };
 
       jwt.sign(
         payload,
-        config.get('jwtSecret'),
+        process.env.JWT_SECRET,
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
@@ -71,9 +77,10 @@ router.post('/',
         }
       );
     } catch (err) {
-      console.error('sup' + err.message)
+      console.error('sup' + err.message);
       res.status(500).send('Server Error:' + err.message);
     }
-  });
+  }
+);
 
 module.exports = router;
