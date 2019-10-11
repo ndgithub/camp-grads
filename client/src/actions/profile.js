@@ -62,10 +62,10 @@ export const getProfileById = userId => async dispatch => {
     console.log('hiasdf');
   } catch (error) {
     console.log('getProfileById catch block' + error);
-    // dispatch({
-    //   type: PROFILE_ERROR,
-    //   payload: { msg: error.response.statusText, status: error.response.status }
-    // });
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status }
+    });
   }
 };
 
