@@ -20,7 +20,6 @@ export default function(state = initialState, action) {
   switch (type) {
     case GET_PROFILE:
     case UPDATE_PROFILE:
-      console.log(`profile reducer, payload is ${JSON.stringify(payload)}`);
       return {
         ...state,
         profile: payload,

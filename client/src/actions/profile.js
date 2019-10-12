@@ -139,9 +139,8 @@ export const addExperience = (formData, history) => async dispatch => {
       payload: res.data
     });
     dispatch(setAlert('Experience Added', 'success'));
-    //history.push('/dashboard');
+    history.push('/dashboard');
   } catch (error) {
-    console.log('**************');
     console.log(error);
     const errors = error.response.data.errors;
 
