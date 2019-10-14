@@ -1,9 +1,9 @@
 <p align="center">
   <img width="50%" src="client/public/assets/campgrads-screenshot.jpg">
-
+  
 # Camp Grads
 
-Social Networking site for coding bootcamp graduates. Users can create profiles, view other profiles, create posts and comment on other posts.
+Social Networking site for coding bootcamp graduates. Users can create profiles, view other profiles, create posts and comment on other posts. [View the deployed app here](https://campgrads.herokuapp.com)
 
 ## Technology
 
