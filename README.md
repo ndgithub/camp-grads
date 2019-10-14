@@ -22,8 +22,6 @@ This is a full-stack application which uses the MERN stack and a few other techn
 
 [https://campgrads.herokuapp.com](https://campgrads.herokuapp.com)
 
-### Demo Credentials
-
 Please feel free to register or use the following credentials to login:
 
 email: jon@jon.com
