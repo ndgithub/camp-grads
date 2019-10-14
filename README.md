@@ -3,7 +3,7 @@
   
 # Camp Grads
 
-Social Networking site for coding bootcamp graduates. Users can create profiles, view other profiles, create posts and comment on other posts. [View the deployed app here](https://campgrads.herokuapp.com)
+Social Networking site for coding bootcamp graduates. Users can create profiles, view other profiles, create posts and comment on other posts.
 
 ## Technology
 
@@ -22,7 +22,9 @@ This is a full-stack application which uses the MERN stack and a few other techn
 
 [https://campgrads.herokuapp.com](https://campgrads.herokuapp.com)
 
-Please feel free to use the following credentials to login:
+### Demo Credentials
+
+Please feel free to register or use the following credentials to login:
 
 email: jon@jon.com
 
