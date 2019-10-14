@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="50%" src="public/assets/campgrads-screenshot.jpg">
+  <img width="50%" src="client/public/assets/campgrads-screenshot.jpg">
 
 # Camp Grads
 
