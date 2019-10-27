@@ -1,3 +1,5 @@
+// This file only used for working with the database outside of the app.
+
 const db = require('../models');
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 const connectDb = require('./db');
